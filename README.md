@@ -1,79 +1,168 @@
-MLOPs Lab CIE
-Overview
+# MLOps Lab CIE
 
-This repository contains the implementation of an end-to-end Machine Learning Operations (MLOps) pipeline developed as part of the lab Continuous Internal Evaluation (CIE). The project demonstrates the complete lifecycle of a machine learning model, including training, hyperparameter tuning, retraining with new data, evaluation, and deployment using Docker.
+This project implements a complete end-to-end MLOps pipeline for predicting **resolution time (hours)** using machine learning models.
 
-Project Structure
+---
 
-Internals_Basics/
-└── MLOPs_Lab_CIE/
-    ├── data/
-    │    ├── training_data.csv
-    │    └── new_data.csv
-    ├── models/
-    │    ├── model.pkl
-    │    └── model_v2.pkl
-    ├── results/
-    │    ├── step1_s1.json
-    │    ├── step2_s2.json
-    │    ├── step3_s3.json
-    │    └── step4_s4.json
-    ├── src/
-    │    ├── train.py
-    │    ├── tune.py
-    │    ├── retrain.py
-    │    ├── step4.py
-    │    └── predict_cli.py
-    └── Dockerfile
+## Project Overview
 
-Workflow
-1. Model Training
+The pipeline includes:
 
-The model is trained using the dataset provided in training_data.csv.
+* Model training with experiment tracking
+* Hyperparameter tuning
+* Model retraining with new data
+* Model comparison and evaluation
+* CLI-based prediction
+* Docker containerization
 
-2. Hyperparameter Tuning
+---
 
-Different model configurations are tested to improve performance.
+## Project Structure
 
-3. Model Retraining
+```
+MLOPs_Lab_CIE/
+│
+├── data/               # Training and new datasets
+├── mlruns/            # MLflow experiment tracking
+├── models/            # Saved models (model.pkl, model_v2.pkl)
+├── results/           # Output JSON files for each step
+├── src/               # Source code
+│   ├── train.py
+│   ├── tune.py
+│   ├── retrain.py
+│   ├── step4.py
+│   ├── predict_cli.py
+│
+├── Dockerfile         # Docker configuration
+└── README.md
+```
 
-The trained model is updated using new data from new_data.csv, and a new version (model_v2.pkl) is generated.
+---
 
-4. Model Evaluation
+## Steps Implemented
 
-The performance of the old and new models is compared using metrics such as Mean Absolute Error (MAE) and R² score. Results are stored in JSON format.
+### Step 1: Model Training
 
-5. Docker Containerization
+* Trained multiple models (Lasso, RandomForest)
+* Logged experiments using MLflow
+* Evaluated using:
 
-The application is containerized using Docker to ensure portability and reproducibility.
+  * MAE
+  * RMSE
+  * R²
+  * MAPE
+* Selected best model based on MAE
 
-Execution Steps
+---
 
-Run the following commands from the project root:
+### step 2: Hyperparameter Tuning
 
-Train the model
-python src/train.py
+* Used GridSearchCV
+* 3-fold cross-validation
+* Optimized model parameters
+* Saved best model and results
 
-Tune hyperparameters
-python src/tune.py
+---
 
-Retrain the model
-python src/retrain.py
+### Step 3: Model Retraining
 
-Evaluate models
-python src/step4.py
+* Used new incoming data
+* Retrained model
+* Saved updated model (`model_v2.pkl`)
 
-Run predictions
-python src/predict_cli.py --severity_level 3 --alerts_count 31 --analyst_experience 6 --is_automated 0
+---
 
-Docker Usage
+### Step 4: Model Comparison
 
-Build Docker image
-docker build -t mlops-lab .
+* Compared old vs retrained model
+* Metrics used:
 
-Run container
-docker run mlops-lab
+  * MAE
+  * R²
+* Determined whether new model improves performance
 
-Conclusion
+---
 
-This project demonstrates a complete MLOps workflow including model development, evaluation, versioning, and deployment using Docker.
+## Docker Usage
+
+### Build Docker Image
+
+```
+docker build -t mlops-predictor .
+```
+
+### Run Prediction
+
+```
+docker run mlops-predictor \
+--severity_level 3 \
+--alerts_count 31 \
+--analyst_experience 6 \
+--is_automated 0
+```
+
+---
+
+## Run Locally
+
+### Train Model
+
+```
+python3 src/train.py
+```
+
+### Tune Model
+
+```
+python3 src/tune.py
+```
+
+### Retrain Model
+
+```
+python3 src/retrain.py
+```
+
+### Compare Models
+
+```
+python3 src/step4.py
+```
+
+### Predict via CLI
+
+```
+python3 src/predict_cli.py \
+--severity_level 3 \
+--alerts_count 31 \
+--analyst_experience 6 \
+--is_automated 0
+```
+
+---
+
+## Output Files
+
+* `results/step1_s1.json` → Training results
+* `results/step2_s2.json` → Tuning results
+* `results/step3_s3.json` → Retraining info
+* `results/step4_s4.json` → Model comparison
+
+---
+
+## Key Concepts Used
+
+* Machine Learning (Regression)
+* Hyperparameter Tuning
+* Cross Validation
+* MLflow Experiment Tracking
+* Docker Containerization
+* CLI-based Model Inference
+
+---
+
+## Conclusion
+
+This project demonstrates a complete MLOps workflow from model development to deployment, ensuring reproducibility, scalability, and performance tracking.
+
+
