@@ -1,0 +1,12 @@
+{
+ "image_name": "shieldops-predictor",
+ "image_tag": "v1",
+ "base_image": "python:3.10-slim",
+ "test_input": {
+  "severity_level": 3,
+  "alerts_count": 31,
+  "analyst_experience": 6,
+  "is_automated": 0
+ },
+ "prediction": 22.60225114052616
+}

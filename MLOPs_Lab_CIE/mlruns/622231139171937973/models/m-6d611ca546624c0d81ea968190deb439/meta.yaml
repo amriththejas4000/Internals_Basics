@@ -1,0 +1,10 @@
+artifact_location: file:///Users/amrithtejas/Documents/Internals_Basics/MLOPs_Lab_CIE/mlruns/622231139171937973/models/m-6d611ca546624c0d81ea968190deb439/artifacts
+creation_timestamp: 1777865652725
+experiment_id: '622231139171937973'
+last_updated_timestamp: 1777865653946
+model_id: m-6d611ca546624c0d81ea968190deb439
+model_type: null
+name: RandomForest
+source_run_id: 159cd2cf7662416d99f5131a44b7a55a
+status: 2
+status_message: null

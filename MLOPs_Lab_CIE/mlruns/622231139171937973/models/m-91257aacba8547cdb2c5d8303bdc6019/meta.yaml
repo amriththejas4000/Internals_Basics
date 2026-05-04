@@ -1,0 +1,10 @@
+artifact_location: file:///Users/amrithtejas/Documents/Internals_Basics/MLOPs_Lab_CIE/mlruns/622231139171937973/models/m-91257aacba8547cdb2c5d8303bdc6019/artifacts
+creation_timestamp: 1777865651281
+experiment_id: '622231139171937973'
+last_updated_timestamp: 1777865652671
+model_id: m-91257aacba8547cdb2c5d8303bdc6019
+model_type: null
+name: Lasso
+source_run_id: 30a602a9a97e4f98a01d873f48edb1d3
+status: 2
+status_message: null

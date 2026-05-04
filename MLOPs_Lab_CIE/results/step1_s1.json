@@ -1,0 +1,22 @@
+{
+    "experiment_name": "shieldops-resolution-hours",
+    "models": [
+        {
+            "name": "Lasso",
+            "mae": 3.336984083674615,
+            "rmse": 3.6434781740711943,
+            "r2": 0.6976040460319081,
+            "mape": 12.908906448158822
+        },
+        {
+            "name": "RandomForest",
+            "mae": 3.859660000000005,
+            "rmse": 4.244017687286431,
+            "r2": 0.5897033208550415,
+            "mape": 15.409921761570816
+        }
+    ],
+    "best_model": "Lasso",
+    "best_metric_name": "mae",
+    "best_metric_value": 3.336984083674615
+}
